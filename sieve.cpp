@@ -13,21 +13,19 @@
 #include <chrono>
 #include <iostream>
 #include <cstdlib>
+#include <vector>
 
 using namespace std;
 
 const unsigned int MAXNUM = 10;
 
 
-tuple<int, double, int, int, double> sieve(unsigned int n) {
+tuple<unsigned int, double, unsigned int, unsigned int, double> sieve(unsigned int n) {
     auto start = chrono::high_resolution_clock::now();
-    bool isPrime[n+1];
+    vector<bool> isPrime(n+1, true);
     int numPrimes = 0, numAdds = 0, numMults = 0, i, k;
     
-    for (i = 2; i < n+1; i++, numAdds++) {
-        isPrime[i] = true;
-    }
-    
+ 
     i = 2;
     numMults++;
     while (i*i <= n) {
@@ -63,6 +61,8 @@ int main(int argc, char *argv[]) {
         cout << "Error: Include unsigned integer as command line argument." << endl;
         return 1;
     }
+    sieve(atoi(argv[1]));
+    
     auto output = sieve(atoi(argv[1]));
 
     cout << "\nNumber of Primes: " << get<0>(output) << endl;
@@ -70,6 +70,6 @@ int main(int argc, char *argv[]) {
     cout << "Number of Addition Operations: " << get<2>(output) << endl;
     cout << "Number of Multiplication Operations: " << get<3>(output) << endl;
     cout << "Time elapsed: " << get<4>(output) << " msecs" << endl;
-
+    
     return 0;
 }
