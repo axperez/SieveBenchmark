@@ -64,8 +64,7 @@ int main(int argc, char *argv[]) {
         cout << "Error: Include unsigned integer as command line argument." << endl;
         return 1;
     }
-    //auto output = sieve(atoi(argv[1]));
-    auto output = sieve(10000000);
+    auto output = sieve(atoi(argv[1]));
 
     cout << "\nNumber of Primes: " << get<0>(output) << endl;
     cout << "B(n) = " << get<1>(output) << endl;
