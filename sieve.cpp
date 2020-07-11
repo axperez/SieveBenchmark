@@ -50,7 +50,6 @@ tuple<int, double, int, int, double> sieve(unsigned int n) {
         if (isPrime[i]) {
             numPrimes++;
             numAdds++;
-            cout << "DEBUG: " << i << endl;
         }
     }
     auto end = chrono::high_resolution_clock::now();
