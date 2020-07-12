@@ -17,9 +17,6 @@
 
 using namespace std;
 
-const unsigned int MAXNUM = 10;
-
-
 tuple<unsigned int, double, unsigned int, unsigned int, double> sieve(unsigned int n) {
     auto start = chrono::high_resolution_clock::now();
     vector<bool> isPrime(n+1, true);
