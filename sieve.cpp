@@ -17,6 +17,9 @@
 
 using namespace std;
 
+
+const unsigned int NUM_ITERS = 10;
+
 tuple<unsigned int, double, unsigned int, unsigned int, double> sieve(unsigned int n) {
     auto start = chrono::high_resolution_clock::now();
     vector<bool> isPrime(n+1, true);
@@ -53,20 +56,30 @@ tuple<unsigned int, double, unsigned int, unsigned int, double> sieve(unsigned i
     return make_tuple(numPrimes, (n/log(n)), numAdds, numMults, dur.count());
 }
 
-int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        cout << "Error: Include unsigned integer as command line argument." << endl;
-        return 1;
+void sieveBenchmark(unsigned int n, unsigned int numIters) {
+    double microsecSum = 0;
+    tuple<unsigned int, double, unsigned int, unsigned int, double> output;
+
+    for (int i = 0; i < numIters; i++) {
+        output = sieve(n);
+        microsecSum += get<4>(output);
     }
-    sieve(atoi(argv[1]));
-    
-    auto output = sieve(atoi(argv[1]));
 
     cout << "\nNumber of Primes: " << get<0>(output) << endl;
     cout << "B(n) = " << get<1>(output) << endl;
     cout << "Number of Addition Operations: " << get<2>(output) << endl;
     cout << "Number of Multiplication Operations: " << get<3>(output) << endl;
-    cout << "Time elapsed: " << get<4>(output) << " msecs" << endl;
+    cout << "Avergae Time Elapsed (Average of " << numIters << " Iterations): ";
+    cout << microsecSum/numIters << " msecs" << endl;
+}
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        cout << "Error: Include unsigned integer as command line argument." << endl;
+        return 1;
+    }
+    
+    sieveBenchmark(atoi(argv[1]), NUM_ITERS);
     
     return 0;
 }
