@@ -53,7 +53,7 @@ tuple<unsigned int, double, unsigned int, unsigned int, double> sieve(unsigned i
     auto end = chrono::high_resolution_clock::now();
     chrono::duration<double, std::milli> dur = end - start;
     
-    return make_tuple(numPrimes, (n/log(n)), numAdds, numMults, dur.count());
+    return make_tuple(numPrimes, (numPrimes/(n/log(n))), numAdds, numMults, dur.count());
 }
 
 void sieveBenchmark(unsigned int n, unsigned int numIters) {
