@@ -23,7 +23,7 @@ const unsigned int NUM_ITERS = 10;
 tuple<unsigned int, double, unsigned int, unsigned int, double> sieve(unsigned int n) {
     auto start = chrono::high_resolution_clock::now();
     vector<bool> isPrime(n+1, true);
-    int numPrimes = 0, numAdds = 0, numMults = 0, i, k;
+    unsigned int numPrimes = 0, numAdds = 0, numMults = 0, i, k;
     
  
     i = 2;
