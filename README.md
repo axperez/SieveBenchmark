@@ -7,6 +7,7 @@ Count prime numbers up to input n, given by command line argument.
 3. `make clean all`
 4. Run with command line argument as n (number )
     * `./sieve n`
+    * Try n as 10^8 or 10^9 to push your CPU (may take a while to run depending on input size)
 
 
 ## Sieve Algorithm:
